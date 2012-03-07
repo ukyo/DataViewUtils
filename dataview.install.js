@@ -1,0 +1,1 @@
+var DataView = DataView || ffDataView;
