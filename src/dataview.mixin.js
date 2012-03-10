@@ -22,13 +22,14 @@ this.getUint24 = function(byteOffset, littleEndian){
 
 /**
  * @param {number} byteOffset
- * @param {number} n
+ * @param {number} len
  * @param {string}
  */
-this.getString = function(byteOffset, n){
-	var b = new Uint8Array(this.buffer, this.byteOffset + byteOffset),
+this.getString = function(byteOffset, len){
+	var offset = this.byteOffset + byteOffset,
+		b = new Uint8Array(this.buffer, offset),
 		a = [];
-	while(n) a[--n] = b[n];
+	while(len) a[--len] = b[len + offset];
 	return String.fromCharCode.apply(null, a);
 };
 
@@ -64,9 +65,10 @@ this.setUint24 = function(byteOffset, value, littleEndian){
  * @param {string} s
  */
 this.setString = function(byteOffset, s){
-	var b = new Uint8Array(this.buffer, this.byteOffset + byteOffset),
+	var offset = this.byteOffset + byteOffset
+		b = new Uint8Array(this.buffer, offset),
 		i = s.length;
-	while(i) b[--i] = s.charCodeAt(i);
+	while(i) b[--i + offset] = s.charCodeAt(i);
 };
 
 }).call(this.DataView.prototype);
