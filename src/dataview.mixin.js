@@ -26,10 +26,9 @@ this.getUint24 = function(byteOffset, littleEndian){
  * @param {string}
  */
 this.getString = function(byteOffset, len){
-	var offset = this.byteOffset + byteOffset,
-		b = new Uint8Array(this.buffer, offset),
+	var b = new Uint8Array(this.buffer, this.byteOffset + byteOffset),
 		a = [];
-	while(len) a[--len] = b[len + offset];
+	while(len) a[--len] = b[len];
 	return String.fromCharCode.apply(null, a);
 };
 
