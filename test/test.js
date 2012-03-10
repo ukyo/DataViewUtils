@@ -46,12 +46,12 @@ test('test DataView', function(){
 	view = new DataView(ui8.buffer, 0, ui8.length);
 	ffview = new ffDataView(ui8_.buffer, 0, ui8_.length);
 	
-	same(ffview, ffview, 'diff from original view.');
 	
 	same(ffview.getInt8(0), view.getInt8(0), 'get int8');
 	same(ffview.getUint8(0), view.getUint8(0), 'get uint8');
 	
 	same(ffview.getInt16(0, true), view.getInt16(0, true), 'get int16 le');
+	same(ffview.getInt16(0), view.getInt16(0), "big endian is default.")
 	same(ffview.getInt16(0, false), view.getInt16(0, false), 'get int16 be');
 	
 	same(ffview.getUint16(0, true), view.getUint16(0, true), 'get uint16 le');
@@ -80,6 +80,10 @@ test('test DataView', function(){
 	ffview.setInt16(0, 0xFF00, true); view.setInt16(0, 0xFF00, true);
 	same(ffview.getInt16(0, true), view.getInt16(0, true), 'set int16 le');
 	same(ffview.getInt16(0, false), view.getInt16(0, false), 'set int16 le');
+	
+	ffview.setInt16(0, 0xFF00); view.setInt16(0, 0xFF00);
+	same(ffview.getInt16(0, true), view.getInt16(0, true), 'set int16 be');
+	same(ffview.getInt16(0, false), view.getInt16(0, false), 'set int16 be');
 	
 	ffview.setInt16(0, 0x9080, false); view.setInt16(0, 0x9080, false);
 	same(ffview.getInt16(0, true), view.getInt16(0, true), 'set int16 be');
