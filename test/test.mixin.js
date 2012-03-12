@@ -1,5 +1,5 @@
 test('test DataView mixin', function(){
-	var view = new DataView(new ArrayBuffer(3));
+	var view = DataView.create(new ArrayBuffer(3));
 	
 	ok(view, "create instance");
 	
