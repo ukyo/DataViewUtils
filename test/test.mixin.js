@@ -1,5 +1,5 @@
 test('test DataView mixin', function(){
-	var view = DataView.create(new ArrayBuffer(3));
+	var view = DataView.create(new ArrayBuffer(4));
 	
 	ok(view, "create instance");
 	
@@ -15,6 +15,6 @@ test('test DataView mixin', function(){
 	same(view.getUint24(0, true), 0x436587, "uint le");
 	same(view.getUint24(0, false), 0x876543, "uint be");
 	
-	view.setString(0, "abc");
-	same(view.getString(0, 3), "abc", "string");
+	view.setString(1, "abc");
+	same(view.getString(1, 3), "abc", "string");
 });
