@@ -87,7 +87,7 @@ p.setUint24 = function(byteOffset, value, littleEndian){
  * @param {string} s
  */
 p.setString = function(byteOffset, s){
-	var b = new Uint8Array(this.buffer, this.byteOffst + byteOffset),
+	var b = new Uint8Array(this.buffer, this.byteOffset + byteOffset),
 		i = s.length;
 	while(i) b[--i] = s.charCodeAt(i);
 };
