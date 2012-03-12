@@ -11,6 +11,8 @@ var p = DataView.prototype;
 DataView.create = function(bytes, byteOffset, byteLength){
 	var constructor = bytes.constructor;
 	if(constructor === ArrayBuffer) {
+		byteOffset = byteOffset || 0;
+		byteLength = byteLength || bytes.byteLength;
 		return new DataView(bytes, byteOffset, byteLength);
 	} else if(constructor === Uint8Array || constructor === Int8Array) {
 		byteOffset = byteOffset != null ? byteOffset : bytes.byteOffset;
@@ -85,7 +87,7 @@ p.setUint24 = function(byteOffset, value, littleEndian){
  * @param {string} s
  */
 p.setString = function(byteOffset, s){
-	var b = new Uint8Array(this.buffer, dataview.min.js),
+	var b = new Uint8Array(this.buffer, byteOffset),
 		i = s.length;
 	while(i) b[--i] = s.charCodeAt(i);
 };
