@@ -17,7 +17,7 @@ function ffDataView(buffer, byteOffset, byteLength){
 	this.buffer = buffer;
 	
 	byteOffset = byteOffset || 0;
-	byteLength = byteLength || buffer.byteLength;
+	byteLength = byteLength || (buffer.byteLength - byteOffset);
 	
 	if(typeof byteOffset === 'number') {
 		byteOffset = ~~byteOffset;
@@ -35,8 +35,8 @@ function ffDataView(buffer, byteOffset, byteLength){
 		throw 'Type error';
 	}
 	
-	this._bytes = new Uint8Array(this.buffer, this.byteOffset, this.byteOffset + this.byteLength);
-	this._sbytes = new Int8Array(this.buffer, this.byteOffset, this.byteOffset + this.byteLength);
+	this._bytes = new Uint8Array(this.buffer, this.byteOffset, this.byteLength);
+	this._sbytes = new Int8Array(this.buffer, this.byteOffset, this.byteLength);
 }
 
 ffDataView.prototype = {
