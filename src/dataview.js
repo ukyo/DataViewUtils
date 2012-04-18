@@ -62,7 +62,7 @@ ffDataView.prototype = {
 		var ui8 = new Uint8Array(new F([value]).buffer),
 			a = [], i = ui8.length;
 		while(i) a[--i] = ui8[i];
-		this._bytes.set(new Uint8Array(littleEndian ? a : a.reverse()), this.byteOffset + byteOffset);
+		this._bytes.set(new Uint8Array(littleEndian ? a : a.reverse()), byteOffset);
 	},
 	
 	/**
@@ -71,8 +71,7 @@ ffDataView.prototype = {
 	 * @return {Array}
 	 */
 	_getBytes: function(byteOffset, n){
-		var offset = this.byteOffset + byteOffset,
-			ui8 = this._bytes.subarray(offset, offset + n),
+		var ui8 = this._bytes.subarray(byteOffset, byteOffset + n),
 			i = ui8.length, a = [];
 		while(i) a[--i] = ui8[i];
 		return a;
@@ -83,7 +82,7 @@ ffDataView.prototype = {
 	 * @return {number}
 	 */
 	getInt8: function(byteOffset){
-		return this._sbytes[this.byteOffset + byteOffset];
+		return this._sbytes[byteOffset];
 	},
 	
 	/**
@@ -91,7 +90,7 @@ ffDataView.prototype = {
 	 * @return {number}
 	 */
 	getUint8: function(byteOffset){
-		return this._bytes[this.byteOffset + byteOffset];
+		return this._bytes[byteOffset];
 	},
 	
 	/**
@@ -153,7 +152,7 @@ ffDataView.prototype = {
 	 * @param {number} value
 	 */
 	setInt8: function(byteOffset, value){
-		this._sbytes[this.byteOffset + byteOffset] = value;
+		this._sbytes[byteOffset] = value;
 	},
 	
 	/**
@@ -161,7 +160,7 @@ ffDataView.prototype = {
 	 * @param {number} value
 	 */
 	setUint8: function(byteOffset, value){
-		this._bytes[this.byteOffset + byteOffset] = value;
+		this._bytes[byteOffset] = value;
 	},
 	
 	/**
