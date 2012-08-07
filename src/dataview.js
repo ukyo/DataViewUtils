@@ -39,7 +39,8 @@ function ffDataView(buffer, byteOffset, byteLength){
     this._sbytes = new Int8Array(this.buffer, this.byteOffset, this.byteLength);
 }
 
-var p = ffDataView.prototype;
+var p = ffDataView.prototype,
+    isBigEndian = !new Uint8Array(new Uint16Array([1]).buffer)[0]; //CPU's native endian.
 
 /**
  * @param {TypedArray} F
@@ -50,6 +51,7 @@ var p = ffDataView.prototype;
  */
 p._getNumber = function(F, byteOffset, n, littleEndian){
     var a = this._getBytes(byteOffset, n);
+    if (isBigEndian) a = a.reverse();
     return new F(new Uint8Array(littleEndian ? a : a.reverse()).buffer)[0];
 };
 
