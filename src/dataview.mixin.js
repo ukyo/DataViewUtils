@@ -3,7 +3,7 @@
 var p = DataView.prototype;
 
 /**
- * @param {Uint8Array|Int8Array|ArrayBuffer} bytes
+ * @param {ArrayBufferView|ArrayBuffer} bytes
  * @param {number} byteOffset
  * @param {number} byteLength
  * @return {DataView}
@@ -16,8 +16,15 @@ DataView.create = function(bytes, byteOffset, byteLength){
             return new DataView(bytes, byteOffset, byteLength);
         case Uint8Array:
         case Int8Array:
-            byteOffset = byteOffset != null ? byteOffset : bytes.byteOffset;
-            byteLength = byteLength != null ? byteLength : bytes.length;
+        case Uint8ClampedArray:
+        case Uint16Array:
+        case Int16Array:
+        case Uint32Array:
+        case Int32Array:
+        case Float32Array:
+        case Float64Array:
+            byteOffset = byteOffset !== void 0 ? byteOffset : bytes.byteOffset;
+            byteLength = byteLength !== void 0 ? byteLength : bytes.byteLength;
             return new DataView(bytes.buffer, byteOffset, byteLength);
         case Number: return new DataView(new ArrayBuffer(bytes));
         default: throw new TypeError('Type error');

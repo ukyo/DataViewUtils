@@ -1,6 +1,6 @@
-# ffDataView
+# DataViewUtils
 
-It is a DataView polyfill for firefox and mixins.
+DataViewUtils extends DataView.prototype.
 
 ## mixins
 
@@ -13,7 +13,7 @@ var ab = new ArrayBuffer(1024);
 var ui8 = new Uint8Array(ab, 256, 256);
 
 //same
-var dv1 = new DataView(ui8.buffer, ui8.byteOffset, ui8.length);
+var dv1 = new DataView(ui8.buffer, ui8.byteOffset, ui8.byteLength);
 var dv2 = DataView.create(ui8);
 ```
 
