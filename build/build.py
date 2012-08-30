@@ -7,12 +7,11 @@ TEMPORARY_FILE_PATH = "tmp.js"
 COMPILER_PATH = os.environ['CLOSURE_COMPILER_PATH']
 REPOSITORY_NAME = "DataViewUtils"
 REPOSITORY_URL = "http://github.com/ukyo/DataViewUtils"
-OUTPUT_NAME = "dataview.min.js"
+OUTPUT_NAME = "dataview.utils.min.js"
 
 JS_FILES = (
-    "../src/mixin.js",
+    "../src/dataview.utils.js",
 )
-
 
 
 def main(compiler_path):
