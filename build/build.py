@@ -4,15 +4,13 @@ import os
 import sys
 
 TEMPORARY_FILE_PATH = "tmp.js"
-COMPILER_PATH = "../../compiler.jar"
-REPOSITORY_NAME = "ffDataview"
-REPOSITORY_URL = "http://github.com/ukyo/ffDataView" 
+COMPILER_PATH = os.environ['CLOSURE_COMPILER_PATH']
+REPOSITORY_NAME = "DataViewUtils"
+REPOSITORY_URL = "http://github.com/ukyo/DataViewUtils"
 OUTPUT_NAME = "dataview.min.js"
 
 JS_FILES = (
-    "../src/dataview.js",
-    "../src/dataview.install.js",
-    "../src/dataview.mixin.js",
+    "../src/mixin.js",
 )
 
 
